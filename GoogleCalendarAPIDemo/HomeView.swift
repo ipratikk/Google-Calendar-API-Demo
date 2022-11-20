@@ -32,6 +32,7 @@ struct HomeView: View {
                         .cornerRadius(25)
                 }
             }
+            CalendarListEventView()
         }
     }
 }

@@ -9,6 +9,9 @@ import Foundation
 import Firebase
 import GoogleSignIn
 import GoogleAPIClientForREST_Calendar
+import CoreSpotlight
+import MobileCoreServices
+
 
 
 enum SignInState {
@@ -36,7 +39,11 @@ class AuthenticationViewModel: ObservableObject {
     @Published var state: SignInState = .signedOut
     @Published var calendarService: GTLRCalendarService? = nil
     @Published var calendarList: GTLRCalendar_CalendarList = GTLRCalendar_CalendarList()
-    @Published var calendarListItems: [GTLRCalendar_CalendarListEntry] = []
+    @Published var calendarListItems: [GTLRCalendar_CalendarListEntry] = [] {
+        didSet {
+            addCalendarListToSpotlight()
+        }
+    }
     @Published var calendarColorDefinitions: CalendarColorDefinitons?
 
     func signIn() {
@@ -179,6 +186,51 @@ class AuthenticationViewModel: ObservableObject {
             completion(.success((itemGroup, itemGroupKeys)))
         }
     }
+}
 
 
+extension AuthenticationViewModel {
+
+    func addCalendarListToSpotlight() {
+        let bundleID = Bundle.main.bundleIdentifier
+        let domainIdentifier = "\(bundleID).calendarList"
+        let searchableItems = calendarListItems.map { entity -> CSSearchableItem in
+            let attributeSet = CSSearchableItemAttributeSet(contentType: .content)
+            attributeSet.title = entity.summary
+            attributeSet.contentDescription = entity.descriptionProperty
+            attributeSet.relatedUniqueIdentifier = entity.identifier
+            return CSSearchableItem(uniqueIdentifier: entity.identifier, domainIdentifier: domainIdentifier, attributeSet: attributeSet)
+        }
+        removeFromSpotlight(domainIdentifier)
+        addToSpotlight(searchableItems)
+    }
+
+    func addToSpotlight( _ searchableItems: [CSSearchableItem]) {
+        CSSearchableIndex.default().indexSearchableItems(searchableItems) { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("Indexing successful")
+            }
+        }
+    }
+
+    func removeFromSpotlight(_ domainIdentifier: String) {
+        CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [domainIdentifier])
+        { (error: Error?) -> Void in
+            if let error = error {
+                print("Remove error: \(error.localizedDescription)")
+            } else {
+                print("Indexing Removed successfully")
+            }
+        }
+    }
+
+    func stringArrayToData(stringArray: [String]) -> Data? {
+        return try? JSONSerialization.data(withJSONObject: stringArray, options: [])
+    }
+
+    func dataToStringArray(data: Data) -> [String]? {
+        return (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String]
+    }
 }
