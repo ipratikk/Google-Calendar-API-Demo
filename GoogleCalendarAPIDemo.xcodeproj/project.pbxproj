@@ -20,6 +20,17 @@
 		6589F66C292A666C00D686D7 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6589F66B292A666C00D686D7 /* GoogleSignInSwift */; };
 		6589F670292A6AB900D686D7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F66F292A6AB900D686D7 /* Extensions.swift */; };
 		6589F672292A6D6C00D686D7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F671292A6D6C00D686D7 /* LoginView.swift */; };
+		6589F674292A6F1D00D686D7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F673292A6F1D00D686D7 /* HomeView.swift */; };
+		6589F676292A6F5600D686D7 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F675292A6F5500D686D7 /* ProfileView.swift */; };
+		6589F678292A703100D686D7 /* CalendarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F677292A703100D686D7 /* CalendarListView.swift */; };
+		6589F67A292A704400D686D7 /* CalendarListEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F679292A704400D686D7 /* CalendarListEventView.swift */; };
+		6589F67C292A706A00D686D7 /* CalendarListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F67B292A706A00D686D7 /* CalendarListItemView.swift */; };
+		6589F67E292A712200D686D7 /* CalendarEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F67D292A712200D686D7 /* CalendarEventView.swift */; };
+		6589F680292A721A00D686D7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F67F292A721A00D686D7 /* LoadingView.swift */; };
+		6589F682292A723900D686D7 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589F681292A723900D686D7 /* LottieView.swift */; };
+		6589F689292A72A600D686D7 /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 6589F685292A72A600D686D7 /* loader.json */; };
+		6589F68A292A72A600D686D7 /* calendar.json in Resources */ = {isa = PBXBuildFile; fileRef = 6589F686292A72A600D686D7 /* calendar.json */; };
+		6589F68B292A72A600D686D7 /* calendar_home.json in Resources */ = {isa = PBXBuildFile; fileRef = 6589F687292A72A600D686D7 /* calendar_home.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +45,17 @@
 		6589F665292A617300D686D7 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		6589F66F292A6AB900D686D7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6589F671292A6D6C00D686D7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		6589F673292A6F1D00D686D7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		6589F675292A6F5500D686D7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		6589F677292A703100D686D7 /* CalendarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListView.swift; sourceTree = "<group>"; };
+		6589F679292A704400D686D7 /* CalendarListEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListEventView.swift; sourceTree = "<group>"; };
+		6589F67B292A706A00D686D7 /* CalendarListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarListItemView.swift; sourceTree = "<group>"; };
+		6589F67D292A712200D686D7 /* CalendarEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventView.swift; sourceTree = "<group>"; };
+		6589F67F292A721A00D686D7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		6589F681292A723900D686D7 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		6589F685292A72A600D686D7 /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loader.json; sourceTree = "<group>"; };
+		6589F686292A72A600D686D7 /* calendar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar.json; sourceTree = "<group>"; };
+		6589F687292A72A600D686D7 /* calendar_home.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = calendar_home.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +93,7 @@
 		6589F645292A538100D686D7 /* GoogleCalendarAPIDemo */ = {
 			isa = PBXGroup;
 			children = (
+				6589F683292A72A600D686D7 /* Assets */,
 				6589F66E292A6AAD00D686D7 /* Utilities */,
 				6589F664292A616100D686D7 /* ViewModel */,
 				6589F663292A5B2600D686D7 /* GoogleCalendarAPIDemo.entitlements */,
@@ -79,6 +102,13 @@
 				6589F646292A538100D686D7 /* GoogleCalendarAPIDemoApp.swift */,
 				6589F648292A538100D686D7 /* ContentView.swift */,
 				6589F671292A6D6C00D686D7 /* LoginView.swift */,
+				6589F673292A6F1D00D686D7 /* HomeView.swift */,
+				6589F677292A703100D686D7 /* CalendarListView.swift */,
+				6589F67B292A706A00D686D7 /* CalendarListItemView.swift */,
+				6589F679292A704400D686D7 /* CalendarListEventView.swift */,
+				6589F68C292A72BA00D686D7 /* HelperViews */,
+				6589F67D292A712200D686D7 /* CalendarEventView.swift */,
+				6589F675292A6F5500D686D7 /* ProfileView.swift */,
 				6589F64A292A538400D686D7 /* Assets.xcassets */,
 				6589F64C292A538400D686D7 /* Preview Content */,
 			);
@@ -107,6 +137,25 @@
 				6589F66F292A6AB900D686D7 /* Extensions.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		6589F683292A72A600D686D7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				6589F685292A72A600D686D7 /* loader.json */,
+				6589F686292A72A600D686D7 /* calendar.json */,
+				6589F687292A72A600D686D7 /* calendar_home.json */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		6589F68C292A72BA00D686D7 /* HelperViews */ = {
+			isa = PBXGroup;
+			children = (
+				6589F67F292A721A00D686D7 /* LoadingView.swift */,
+				6589F681292A723900D686D7 /* LottieView.swift */,
+			);
+			path = HelperViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,8 +230,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6589F64E292A538400D686D7 /* Preview Assets.xcassets in Resources */,
+				6589F68A292A72A600D686D7 /* calendar.json in Resources */,
+				6589F68B292A72A600D686D7 /* calendar_home.json in Resources */,
 				6589F64B292A538400D686D7 /* Assets.xcassets in Resources */,
 				6589F662292A5AF500D686D7 /* GoogleService-Info.plist in Resources */,
+				6589F689292A72A600D686D7 /* loader.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,10 +245,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6589F67A292A704400D686D7 /* CalendarListEventView.swift in Sources */,
+				6589F67C292A706A00D686D7 /* CalendarListItemView.swift in Sources */,
 				6589F666292A617300D686D7 /* AuthenticationViewModel.swift in Sources */,
+				6589F67E292A712200D686D7 /* CalendarEventView.swift in Sources */,
 				6589F649292A538100D686D7 /* ContentView.swift in Sources */,
+				6589F680292A721A00D686D7 /* LoadingView.swift in Sources */,
+				6589F678292A703100D686D7 /* CalendarListView.swift in Sources */,
 				6589F647292A538100D686D7 /* GoogleCalendarAPIDemoApp.swift in Sources */,
+				6589F682292A723900D686D7 /* LottieView.swift in Sources */,
+				6589F674292A6F1D00D686D7 /* HomeView.swift in Sources */,
 				6589F672292A6D6C00D686D7 /* LoginView.swift in Sources */,
+				6589F676292A6F5600D686D7 /* ProfileView.swift in Sources */,
 				6589F670292A6AB900D686D7 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

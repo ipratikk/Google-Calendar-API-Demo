@@ -13,7 +13,11 @@ struct LoginView: View {
     @EnvironmentObject var loginViewModel: AuthenticationViewModel
 
     var body: some View {
-        GoogleSignInButton(action: loginViewModel.signIn)
+        VStack {
+            LottieView(name: "calendar_home", loopMode: .loop)
+            Spacer()
+            GoogleSignInButton(action: loginViewModel.signIn)
+        }
     }
 }
 
