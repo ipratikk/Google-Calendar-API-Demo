@@ -39,6 +39,7 @@ And of course this demo app itself is open source with a [public repository](htt
 - Create API key with the app bundle identifier
 - Download the OAuth 2.0 plist file and add to project
 - Rename the Plist file to `GoogleInfo.plist`
+- Install the packages via `SPM (Swift Package Manager)` or Wait for the packages to be resolved automatically
 
 Install the dependencies and devDependencies and build the application.
 
