@@ -46,7 +46,7 @@ Install the dependencies and devDependencies and build the application.
 
 Want to contribute? Great!
 
-This app uses SwiftUI + Combine for binding data and creating the UI.
+This app uses `SwiftUI + Combine` for binding data and creating the UI.
 
 
 ### Work In Progress
