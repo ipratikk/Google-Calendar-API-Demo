@@ -218,6 +218,7 @@ extension AuthenticationViewModel {
         let domainIdentifier = "\(bundleID).calendarList"
         let searchableItems = calendarListItems.map { entity -> CSSearchableItem in
             let attributeSet = CSSearchableItemAttributeSet(contentType: .content)
+            attributeSet.containerDisplayName = "Calendar"
             attributeSet.title = entity.summary
             attributeSet.contentDescription = entity.descriptionProperty
             attributeSet.relatedUniqueIdentifier = entity.identifier
@@ -233,6 +234,7 @@ extension AuthenticationViewModel {
         let events = allEvents.flatMap { $0.value }
         let searchableItems = events.map { entity -> CSSearchableItem in
             let attributeSet = CSSearchableItemAttributeSet(contentType: .content)
+            attributeSet.containerDisplayName = "Event"
             attributeSet.title = entity.summary
             attributeSet.contentDescription = entity.descriptionProperty
             attributeSet.relatedUniqueIdentifier = entity.identifier
