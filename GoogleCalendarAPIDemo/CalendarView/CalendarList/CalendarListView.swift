@@ -21,7 +21,7 @@ struct CalendarListView: View {
             }
             ForEach(loginViewModel.calendarListItems, id: \.identifier) { item in
                 NavigationLink {
-                    CalendarListEventView(calendarId: item.identifier!)
+                    CalendarEventList(calendarId: item.identifier!)
                 }label: {
                     CalendarListItemView(calendarItem: item)
                         .cornerRadius(15)
@@ -30,11 +30,5 @@ struct CalendarListView: View {
             .listStyle(SidebarListStyle())
         }
         .padding()
-    }
-}
-
-struct CalendarListView_Previews: PreviewProvider {
-    static var previews: some View {
-        CalendarListView()
     }
 }

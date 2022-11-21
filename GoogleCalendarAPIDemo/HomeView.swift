@@ -32,13 +32,7 @@ struct HomeView: View {
                         .cornerRadius(25)
                 }
             }
-            CalendarListEventView()
+            CalendarEventList()
         }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
     }
 }

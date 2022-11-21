@@ -45,6 +45,11 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     @Published var calendarColorDefinitions: CalendarColorDefinitons?
+    @Published var allEvents : [String: [GTLRCalendar_Event]] = [:] {
+        didSet {
+            addCalendarEventsToSpotlight()
+        }
+    }
 
     func signIn() {
             // Checking for previous sign-in, if yes, then restore it, else move to sign in
@@ -162,10 +167,29 @@ class AuthenticationViewModel: ObservableObject {
 
             // Fetch all calendar items
             self.calendarListItems = calendarListItems as [GTLRCalendar_CalendarListEntry]
+
+            // Fetch all calendar events for calendar items
+            for item in calendarListItems {
+                self.getEventList(for: item.identifier ?? "primary") { result in
+                    switch result {
+                    case .success((let events)):
+                        var id = item.identifier
+                        let user = GIDSignIn.sharedInstance.currentUser
+                        if let email = user?.profile?.email {
+                            if let idx = id, idx == email {
+                                id = "primary"
+                            }
+                        }
+                        self.allEvents[id ?? "primary"] = events
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
         }
     }
 
-    func getEvents(for calendarId: String, showDeleted: Bool = false, sowHidden: Bool = false, startDateTime: GTLRDateTime? = nil, endDateTime: GTLRDateTime? = nil, completion: @escaping (Result<([Date: [GTLRCalendar_Event]],[Dictionary<Date, [GTLRCalendar_Event]>.Keys.Element]), Error>) -> Void) {
+    func getEventList(for calendarId: String, showDeleted: Bool = false, showHidden: Bool = false, startDateTime: GTLRDateTime? = nil, endDateTime: GTLRDateTime? = nil, completion: @escaping (Result<[GTLRCalendar_Event], Error>) -> Void) {
         guard let service = self.calendarService else {
             completion(.failure(CalendarError.calendarServiceError))
             return
@@ -181,9 +205,7 @@ class AuthenticationViewModel: ObservableObject {
                 completion(.failure(CalendarError.networkError))
                 return
             }
-            let itemGroup = items.groupedBy(dateComponents: [.day, .month, .year])
-            let itemGroupKeys = Array(itemGroup.keys).sorted(by: { $0.compare($1) == .orderedDescending })
-            completion(.success((itemGroup, itemGroupKeys)))
+            completion(.success(items))
         }
     }
 }
@@ -205,12 +227,28 @@ extension AuthenticationViewModel {
         addToSpotlight(searchableItems)
     }
 
+    func addCalendarEventsToSpotlight() {
+        let bundleID = Bundle.main.bundleIdentifier
+        let domainIdentifier = "\(bundleID).calendarEvents"
+        let events = allEvents.flatMap { $0.value }
+        let searchableItems = events.map { entity -> CSSearchableItem in
+            let attributeSet = CSSearchableItemAttributeSet(contentType: .content)
+            attributeSet.title = entity.summary
+            attributeSet.contentDescription = entity.descriptionProperty
+            attributeSet.relatedUniqueIdentifier = entity.identifier
+            attributeSet.url = URL(string: entity.hangoutLink ?? "")
+            attributeSet.startDate = entity.start?.dateTime?.date ?? Date.now
+            attributeSet.endDate = entity.end?.dateTime?.date ?? Date.now
+            return CSSearchableItem(uniqueIdentifier: entity.identifier, domainIdentifier: domainIdentifier, attributeSet: attributeSet)
+        }
+        removeFromSpotlight(domainIdentifier)
+        addToSpotlight(searchableItems)
+    }
+
     func addToSpotlight( _ searchableItems: [CSSearchableItem]) {
         CSSearchableIndex.default().indexSearchableItems(searchableItems) { error in
             if let error = error {
                 print(error)
-            } else {
-                print("Indexing successful")
             }
         }
     }
@@ -220,8 +258,6 @@ extension AuthenticationViewModel {
         { (error: Error?) -> Void in
             if let error = error {
                 print("Remove error: \(error.localizedDescription)")
-            } else {
-                print("Indexing Removed successfully")
             }
         }
     }

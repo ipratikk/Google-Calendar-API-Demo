@@ -51,3 +51,32 @@ extension Color {
         )
     }
 }
+
+extension Date {
+    func daysInMonth(_ monthNumber: Int? = nil, _ year: Int? = nil) -> Int {
+        var dateComponents = DateComponents()
+        dateComponents.year = year ?? Calendar.current.component(.year,  from: self)
+        dateComponents.month = monthNumber ?? Calendar.current.component(.month,  from: self)
+        if
+            let d = Calendar.current.date(from: dateComponents),
+            let interval = Calendar.current.dateInterval(of: .month, for: d),
+            let days = Calendar.current.dateComponents([.day], from: interval.start, to: interval.end).day
+        { return days } else { return -1 }
+    }
+    
+    func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
+        return calendar.dateComponents(Set(components), from: self)
+    }
+
+    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
+        return calendar.component(component, from: self)
+    }
+
+    func startOfMonth() -> Date {
+        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
+    }
+
+    func endOfMonth() -> Date {
+        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth())!
+    }
+}
