@@ -1,5 +1,5 @@
 # Google Calendar API Demo
-## Built on SwiftUI using GoogleSignIn and GoogleAPIClientForREST
+### Built on SwiftUI using GoogleSignIn and GoogleAPIClientForREST
 
 This app is built to show all the events associated with a google account.
 
