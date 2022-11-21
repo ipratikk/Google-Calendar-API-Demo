@@ -12,13 +12,6 @@ struct CalendarListView: View {
 
     var body: some View {
         VStack(spacing: 15) {
-            if loginViewModel.calendarListItems.count == 0 {
-                Button(action: {
-                    loginViewModel.signIn()
-                }, label: {
-                    Text("Retry")
-                })
-            }
             ForEach(loginViewModel.calendarListItems, id: \.identifier) { item in
                 NavigationLink {
                     CalendarEventList(calendarId: item.identifier!)

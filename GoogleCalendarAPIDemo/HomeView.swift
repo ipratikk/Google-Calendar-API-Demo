@@ -19,6 +19,12 @@ struct HomeView: View {
                 ScrollView{
                     CalendarListView()
                 }
+                .frame(maxWidth: .infinity)
+                .overlay(content: {
+                    if loginViewModel.calendarListItems.count == 0 {
+                        LottieView(name: "noData", loopMode: .loop)
+                    }
+                })
             }
             .navigationTitle("Calendars")
             .navigationBarTitleDisplayMode(.automatic)

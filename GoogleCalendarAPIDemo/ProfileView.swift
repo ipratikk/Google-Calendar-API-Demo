@@ -55,19 +55,17 @@ struct ProfileView: View {
     /// A generic view that shows images from the network.
 struct NetworkImage: View {
     let url: URL?
+    @State var image: UIImage = UIImage(systemName: "person.circle.fill")!
 
     var body: some View {
-        // To be refactored to use URLSession
-        if let url = url,
-           let data = try? Data(contentsOf: url),
-           let uiImage = UIImage(data: data) {
-            Image(uiImage: uiImage)
+        AsyncImage(url: url) { image in
+            image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-        } else {
-            Image(systemName: "person.circle.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+        } placeholder: {
+            Image(systemName: "person.cirlce.fill")
+                .imageScale(.large)
+                .foregroundColor(.gray)
         }
     }
 }
