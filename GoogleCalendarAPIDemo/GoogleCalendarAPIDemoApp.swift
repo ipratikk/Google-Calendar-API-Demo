@@ -6,16 +6,11 @@
 //
 
 import SwiftUI
-import Firebase
 
 @main
 struct GoogleCalendarAPIDemoApp: App {
 
     @StateObject var loginViewModel = AuthenticationViewModel()
-
-    init() {
-        setupAuthentication()
-    }
 
     var body: some Scene {
         WindowGroup {
@@ -26,11 +21,5 @@ struct GoogleCalendarAPIDemoApp: App {
                     loginViewModel.fetchData()
                 }
         }
-    }
-}
-
-extension GoogleCalendarAPIDemoApp {
-    private func setupAuthentication() {
-        FirebaseApp.configure()
     }
 }

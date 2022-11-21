@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Firebase
 import GoogleSignIn
 import GoogleAPIClientForREST_Calendar
 import CoreSpotlight
@@ -51,6 +50,14 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
 
+    func getClientIDFromPlist() -> String {
+        var nsDictionary: NSDictionary?
+        if let path = Bundle.main.path(forResource: "GoogleInfo", ofType: "plist") {
+            nsDictionary = NSDictionary(contentsOfFile: path)
+        }
+        return nsDictionary?["CLIENT_ID"] as! String
+    }
+
     func signIn() {
             // Checking for previous sign-in, if yes, then restore it, else move to sign in
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
@@ -58,8 +65,8 @@ class AuthenticationViewModel: ObservableObject {
                 authenticateUser(for: user, with: error)
             }
         } else {
-                // fetching clientID from firebaseApp (GoogleService-Info.plist)
-            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+                // fetching clientID from Google OAuth2.0 plist (GoogleInfo.plist)
+            let clientID = getClientIDFromPlist()
 
                 // creating google sign in config object with clientID
             let configuration = GIDConfiguration(clientID: clientID)
@@ -106,14 +113,7 @@ class AuthenticationViewModel: ObservableObject {
     func signOut() {
             // sign out of google
         GIDSignIn.sharedInstance.signOut()
-
-        do {
-                // sign out of firebase app as well
-            try Auth.auth().signOut()
-            state = .signedOut
-        } catch {
-            print(error.localizedDescription)
-        }
+        state = .signedOut
     }
 
     func restoreSignIn() {

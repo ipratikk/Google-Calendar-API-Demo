@@ -93,3 +93,4 @@ iOSInjectionProject/
 # Google Plist and URL Schemes
 Info.plist
 GoogleCalendarAPIDemo/GoogleService-Info.plist
+GoogleCalendarAPIDemo/Assets/GoogleInfo.plist

@@ -63,15 +63,9 @@ struct NetworkImage: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         } placeholder: {
-            Image(systemName: "person.cirlce.fill")
+            Image(systemName: "person.circle.fill")
                 .imageScale(.large)
                 .foregroundColor(.gray)
         }
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
     }
 }
