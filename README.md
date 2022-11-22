@@ -3,6 +3,15 @@
 
 This app is built to show all the events associated with a google account.
 
+
+## Demo Video
+
+
+https://user-images.githubusercontent.com/32486561/203391101-c55a6c7a-7629-416c-8b7d-1c4920833bed.mp4
+
+
+
+
 ## Features
 
 - Sign in via Google
